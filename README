@@ -1,14 +1,49 @@
 # Running on 3.9.6
 
-
 Create Empty Folders in Dir:
 convstepstl
 tempdownload
 tempStep
 tempDir
 
-
 # appexplained: Documented Script
 # app.py: Script
 
 # pointcreation: DB Loader Postgres, for DB with header: id (int4), filename (text), centroid (geometry), point_cloud_100_x,y,z (float8[]), point_cloud_5000_x,y,z (float8[])
+
+-----------------------------------------------------------------------------------------------------------
+
+## Functions
+
+1. **Environment Setup**: The necessary libraries are imported, environment variables are loaded, and configurations are set up, including database connection details.
+    
+2. **Utility Functions**: Several utility functions are provided:
+    
+    - `extract_product_family_from_filename`: Extracts the product family from the filename.
+    - `get_canonical_form`: Gets the canonical form of a point cloud.
+    - `rotate_point_cloud`: Rotates a point cloud by a certain angle.
+    - `save_uploadedfile`: Saves the uploaded file to a temporary directory.
+    - `preprocess_file`: Preprocesses the uploaded file.
+    - `compute_centroid_from_mesh`: Computes the centroid of a 3D mesh.
+    - `render_2d_projection`: Renders a 2D projection of the 3D point cloud.
+    - `preselect_files_by_centroid`: Preselects files from the database based on centroid proximity.
+    - `final_comparison`: Performs the final comparison of files.
+    - `download_blob`: Downloads a blob from Azure storage.
+    - `connect_to_database` and `release_connection`: Handles database connections using a connection pool.
+    - `rotate_point_cloud_around_x` and `rotate_point_cloud_around_z`: Rotates a point cloud around the X or Z axis.
+    - `download_and_compare`: Downloads and compares files in parallel.
+    - `batch`: Yields batches from an iterable.
+    - `compare_files`: Compares the uploaded file against a set of selected files.
+    - `refine_single_file` and `compare_single_file`: Refine and compare single files respectively.
+    - `refine_with_hausdorff`: Refines the preselected files using the Hausdorff distance.
+    - `get_point_cloud_from_db`: Retrieves point cloud data from the database.
+    - `classify_product_family`: Classifies the product family based on the filenames.
+3. **Main Application**:
+    
+    - The main Streamlit application (`main()`) starts with the user uploading a file.
+    - Once uploaded, the file is saved, preprocessed, and visualized.
+    - Files are then preselected based on centroid proximity.
+    - The top 10 matches from the preselection are displayed.
+    - A more refined comparison is then done using the Hausdorff distance, and the results are displayed.
+    - The top 3 matches are visualized in 2D.
+4. **Execution**: The Streamlit application is initiated by running the `main()` function if the script is run as the main module.
