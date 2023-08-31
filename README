@@ -6,3 +6,9 @@ convstepstl
 tempdownload
 tempStep
 tempDir
+
+
+# appexplained: Documented Script
+# app.py: Script
+
+# pointcreation: DB Loader Postgres, for DB with header: id (int4), filename (text), centroid (geometry), point_cloud_100_x,y,z (float8[]), point_cloud_5000_x,y,z (float8[])
